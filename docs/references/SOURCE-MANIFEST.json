@@ -3,13 +3,13 @@
   "purpose": "Original product reference byte integrity; not a governance adoption lock",
   "files": [
     {
-      "path": "madar-complete-master-prompt-v2.1.md",
+      "path": "docs/product/madar-complete-master-prompt-v2.1.md",
       "size_bytes": 35420,
       "sha256": "817562619a7f93c17cfecebf8d1c7d8e8ee7aac8fe64ce22042575cffe4bcf32",
       "status": "approved_reference_original_bytes"
     },
     {
-      "path": "MADAR-UX-Architecture-v1.md",
+      "path": "docs/ux/MADAR-UX-Architecture-v1.md",
       "size_bytes": 31739,
       "sha256": "72bd5ca33842e39a5b04c7d27d8e5d809d7fea719664d869994bf8e96713cb6f",
       "status": "approved_reference_original_bytes"
