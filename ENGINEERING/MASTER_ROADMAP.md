@@ -1,7 +1,7 @@
 # MADAR Master Roadmap
 
 Checkpoint: 2026-10-28. Current phase: **UX/UI design only**.
-Status: v0.2 PREPARED LOCALLY; private static preview published; GitHub write blocked (403); owner approval pending.
+Status: v0.2 PUBLISHED FOR REVIEW in [draft PR #3](https://github.com/n923760-rgb/madar/pull/3); private static preview published; owner design approval pending.
 
 ## Verified source checkpoint
 
@@ -17,7 +17,7 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 | Product specification | Product Master v2.1 imported unchanged | Preserve approved baseline; record amendments |
 | UX architecture | UX v1 imported unchanged; conflicts recorded | Resolve open details and document decision attribution |
 | First ten screen brief | Interactive source retained; five primary views refined | Owner review |
-| Wireframes/prototype | 40 browser layout cases and five simulated journeys checked | Remote PR, physical device QA and visual approval |
+| Wireframes/prototype | 40 browser layout cases and five simulated journeys checked | Physical device QA and visual approval |
 | UI approval | NOT VERIFIED | Owner review and open decisions resolved |
 | Usability/accessibility | Token contrast, browser targets/layout PASS | User study, real devices, screen readers NOT RUN |
 | AI evaluation set | NOT VERIFIED | Synthetic cases, expected outcomes, metrics and review |
@@ -37,12 +37,12 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 
 - [Private interactive prototype](https://madar-design-review-oct28.n923760.chatgpt.site), owner-only; synthetic data; no production MADAR services.
 - [Prototype guide](../docs/ux/prototype/README.md), [Design System v0.2](../docs/ux/DESIGN_SYSTEM-v0.2.md), [dated review and exact test limits](REPORTS/DESIGN-REVIEW-2026-10-28.md).
-- Local `design/minimal-premium-v0.2` starts at PR #2 head `dcc37b80069797ffe90a216dad11c30160b702aa`. Remote branch/new PR NOT CREATED: connector returned 403.
+- Remote `design/minimal-premium-v0.2` starts at PR #2 head `dcc37b80069797ffe90a216dad11c30160b702aa`. [Draft PR #3](https://github.com/n923760-rgb/madar/pull/3) targets PR #2's branch. Browser publication was authorized after connector 403; all 11 changed files matched local blob hashes. Neither PR is merged.
 - `flows.cjs` and `design.cjs` PASS. Product/UX hashes unchanged. Browser matrix: 40 cases, no horizontal overflow or primary-screen buttons below 44px after repair. Five simulated fixture journeys exercised; final record-sharing adjustment checked in Node only.
 
 ## Exact next round
 
-Publish prepared branch/PR using an authorized GitHub write route, without merging. Owner reviews Home directions, dock versus Compact, palette and font substitution. Then qualify real mobile/Telegram keyboard, safe areas, foldable/short/landscape layouts, 200% text, reduced motion, screen readers and first-time Arabic user tasks. Original selected raster reference is not recovered; do not claim pixel fidelity. Production engineering remains blocked until explicit design approval.
+Review draft PR #3 without merging. Owner reviews Home directions, dock versus Compact, palette and font substitution. Then qualify real mobile/Telegram keyboard, safe areas, foldable/short/landscape layouts, 200% text, reduced motion, screen readers and first-time Arabic user tasks. Original selected raster reference is not recovered; do not claim pixel fidelity. Production engineering remains blocked until explicit design approval.
 
 ## Open decisions
 
