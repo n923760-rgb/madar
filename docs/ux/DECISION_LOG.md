@@ -18,3 +18,12 @@ Status: Documentation checkpoint. Proposals are not approved behavior.
 ## Change control
 
 Every accepted change records the owner decision, affected document section, and resulting behavior. Do not rename proposals as DECIDED merely because a new conversation begins or the owner asks to continue unrelated work.
+
+## 2026-10-28 — v0.2 visual review
+
+- UX-009 — PROPOSED: semantic dark/light palette and embedded Noto Kufi/Noto Sans Arabic, specified in [Design System v0.2](DESIGN_SYSTEM-v0.2.md). The font substitution and exact values await visual approval.
+- UX-010 — PROPOSED: persistent labeled direction buttons on Home and one header destination menu internally; remove repeated internal bottom navigation. No new product area is introduced.
+- UX-003 — STILL PROPOSED: default bottom composer implemented for comparison. The owner's current instruction authorizes improvement/prototyping, not automatic final design approval.
+- UX-007 — TESTED PARTIALLY: 136px circle candidate; 40 browser layout cases passed after calendar target repair. Physical first-time user direction testing remains open.
+- Preserve UX-004 one-active-occurrence invariant, UX-005 confidence-based clarification, and UX-006 explicit maintenance completion wording. No backend implementation or central governance adoption is implied.
+- Reference attribution: latest retrievable conversation description plus UX v1 §17; original selected raster unavailable. See [dated review](../../ENGINEERING/REPORTS/DESIGN-REVIEW-2026-10-28.md).
