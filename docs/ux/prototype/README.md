@@ -1,37 +1,28 @@
-# MADAR interactive design prototype v0.1
+# MADAR interactive design prototype v0.2
 
-Design study only. UX-003 remains **PROPOSED**. No production frontend/backend, AI, media capture, persistence or notifications are implemented.
+Open `index.html` in a modern browser, or use the owner-only [interactive preview](https://madar-design-review-oct28.n923760.chatgpt.site). On mobile, scroll below the app for review tools; appearance is also reachable in the app's destination menu → Settings. All examples are synthetic and memory-only. Reload resets them. No microphone, AI, upload, persistence or notifications are active.
 
-## Open and review
+Home preserves tap-to-voice and four physical drag directions: up Calendar, right My Things, left Inbox, down Ask. Each destination has a visible tap alternative. The header brand returns Home; the menu opens destinations/settings. RTL Back and browser Back return to the previous route.
 
-Download [index.html](index.html) and open it in a modern browser. It is self-contained, works offline, and has no dependencies or external assets. Reloading resets the synthetic session. Font names reference the approved Arabic families but fall back to installed fonts; font assets and typography must be qualified before sign-off.
+The review panel controls shell width, dark/light mode, four capture fixtures, screen selection and dock/Compact comparison. My Things has search/type filters. Calendar supports day/week/month, month traversal and day selection against a fixed 28 October 2026 review date. Unknown Ask queries return a no-result state. Text drafts survive in-session navigation.
 
-The review panel selects 320/360/390/430px, night/day appearance, a capture scenario, individual screens and the internal composer versus Compact Mode. The hero circle stays on Home. Internal browse pages use a microphone at the right in RTL, text in the middle and an attachment at the left. Typing changes the microphone to Send. Forms and editing screens omit the capture composer. Ask uses an explicit question form.
+## Review paths
 
-The ten numbered screens are Welcome, Onboarding, Home, Expanded directions, Voice, File, Processing, Clarification, Saved and Inbox. Supporting views include Calendar, My Things, Vehicle timeline, Appliance, Ask, Source, Correction and Settings. Tap alternatives expose all direction destinations; dragging is candidate behavior requiring browser/device verification.
+1. Reminder fixture → Try flow → Stop → Send → complete → saved → Undo.
+2. Oil fixture → voice → processing → valid mileage → saved → vehicle timeline.
+3. Document fixture → PDF → send → complete → reminder timing → saved.
+4. Invoice fixture → photo → send → complete → appliance → saved.
+5. Ask → oil question → source → correct → save → Undo.
+6. Inbox → failed item → offline simulation → retry blocked → restore connection → retry.
+7. Home circle → each physical direction; short/diagonal/cancelled drag must not start voice. Repeat by visible buttons and keyboard.
 
-## Review journeys
-
-| Journey | Click sequence / expected design behavior |
-|---|---|
-| Clear reminder | Reminder scenario → Try flow → Stop → Send → Complete simulation → Saved → View Calendar. No clarification step; Undo affects this simulated save. |
-| Oil change | Oil scenario → Voice → Send → Complete → Confirm valid mileage → Saved → Vehicle timeline. Invalid mileage stays unresolved. |
-| Document renewal | Document scenario → PDF example → Send → Complete → Choose reminder timing → Saved → Calendar. One next active reminder in the design. |
-| Invoice to asset | Invoice scenario → Photo example → Send → Complete → Choose appliance → Saved → Appliance. Appliance → duplicate example → Existing must not simulate another save. |
-| Ask / correction | My Things → Ask → Last oil change → Source → Correct → Save correction → Undo. Keep the original source visible. |
-
-Inbox includes processing, uncertain and failed examples; Retry preserves the synthetic source. Offline retry reports unavailability. Attachments and recording are explicitly simulated; playback only explains that no audio exists. Free text is shown safely in the source preview, while interpretation uses the selected fixture. This is not a general parser or working organizer. Fixed fixtures in Calendar/timelines remain demonstration content; a simulated save is separately identified. The appliance/new-asset examples are illustrative, not persistent domain objects.
-
-## Verification at this checkpoint
-
-Run from repository root:
+## Checks
 
 ```sh
 node docs/ux/prototype/checks/flows.cjs
+node docs/ux/prototype/checks/design.cjs
 ```
 
-Passed: 20 template renders; clear direct save; uncertain mileage validation; correction undo; duplicate handling; offline retry; answer/source; HTML escaping; Back; absence of network/storage/media APIs. The test intentionally labels its DOM stub limitation.
+These are Node logic checks, not device qualification. See the [dated report](../../../ENGINEERING/REPORTS/DESIGN-REVIEW-2026-10-28.md) for actual browser results and NOT RUN cases. [Design System](../DESIGN_SYSTEM-v0.2.md) documents tokens/components/interactions. Font subsets and license text are embedded to keep the preview self-contained.
 
-**NOT RUN:** browser visual inspection, gesture tests, keyboard/Telegram safe-area behavior, 200% scaling, actual font loading, measured contrast, screen-reader checks and first-time usability. Review controls and CSS are candidates, not evidence of these checks. No approval or central-governance adoption is implied.
-
-After browser QA, record results in a dated report and update the [single roadmap](../../../ENGINEERING/MASTER_ROADMAP.md). Record accepted design changes in the [decision log](../DECISION_LOG.md).
+UX-003 and final visual approval remain pending. Product/UX reference bytes are unchanged. Do not start production engineering from this prototype alone.
