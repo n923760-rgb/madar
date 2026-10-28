@@ -1,7 +1,7 @@
 # MADAR Master Roadmap
 
-Checkpoint: 2026-10-14. Current phase: **UX/UI design only**.
-Status: DOCUMENTATION FOUNDATION MERGED; prototype source prepared on a separate design branch.
+Checkpoint: 2026-10-28. Current phase: **UX/UI design only**.
+Status: v0.2 PREPARED LOCALLY; private static preview published; GitHub write blocked (403); owner approval pending.
 
 ## Verified source checkpoint
 
@@ -16,10 +16,10 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 |---|---|---|
 | Product specification | Product Master v2.1 imported unchanged | Preserve approved baseline; record amendments |
 | UX architecture | UX v1 imported unchanged; conflicts recorded | Resolve open details and document decision attribution |
-| First ten screen brief | Draft composition + interactive HTML source | Visual inspection and owner review |
-| Wireframes/prototype | Interactive source and logic checks complete; browser rendering NOT VERIFIED | Browser/device QA, gestures and five-journey usability review |
+| First ten screen brief | Interactive source retained; five primary views refined | Owner review |
+| Wireframes/prototype | 40 browser layout cases and five simulated journeys checked | Remote PR, physical device QA and visual approval |
 | UI approval | NOT VERIFIED | Owner review and open decisions resolved |
-| Usability/accessibility | NOT RUN | Recorded Arabic/RTL task results and device checks |
+| Usability/accessibility | Token contrast, browser targets/layout PASS | User study, real devices, screen readers NOT RUN |
 | AI evaluation set | NOT VERIFIED | Synthetic cases, expected outcomes, metrics and review |
 | Central governance adoption | PENDING | Approved source/version and adoption evidence |
 | Production engineering | NOT STARTED | Explicit design approval and bounded engineering task |
@@ -35,13 +35,14 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 
 ## Current design artifact and checks
 
-[Prototype guide](../docs/ux/prototype/README.md) explains how to open [the self-contained HTML](../docs/ux/prototype/index.html) and review the proposed internal composer versus Compact Mode. Source includes ten primary screens and Calendar/My Things/Timeline/Ask/Settings supporting views, four capture scenarios, and sourced-answer/edit/undo interactions. All data is synthetic and browser-memory-only.
-
-`node docs/ux/prototype/checks/flows.cjs` passed 20 screen-template renders and checks for low-risk direct save, uncertain mileage validation, correction undo, duplicate handling, offline retry, sourced answers, text escaping and Back. This is logic-only with a DOM stub. It does not qualify browser rendering, pointer gestures, accessibility, real devices, keyboards, AI or persistence.
+- [Private interactive prototype](https://madar-design-review-oct28.n923760.chatgpt.site), owner-only; synthetic data; no production MADAR services.
+- [Prototype guide](../docs/ux/prototype/README.md), [Design System v0.2](../docs/ux/DESIGN_SYSTEM-v0.2.md), [dated review and exact test limits](REPORTS/DESIGN-REVIEW-2026-10-28.md).
+- Local `design/minimal-premium-v0.2` starts at PR #2 head `dcc37b80069797ffe90a216dad11c30160b702aa`. Remote branch/new PR NOT CREATED: connector returned 403.
+- `flows.cjs` and `design.cjs` PASS. Product/UX hashes unchanged. Browser matrix: 40 cases, no horizontal overflow or primary-screen buttons below 44px after repair. Five simulated fixture journeys exercised; final record-sharing adjustment checked in Node only.
 
 ## Exact next round
 
-Open the prototype in a supported browser QA environment. Inspect 320/360/390/430px, short/tall viewports, keyboard and Telegram safe areas, 200% text, contrast, focus/Back, reduced motion and direction cancellation. Load the approved Arabic fonts before visual sign-off; this offline draft uses installed font fallbacks. Run all five journeys with first-time Arabic users and record actual results. Review UX-003 and UX-007 without silently approving proposals. Production work remains gated by explicit design approval.
+Publish prepared branch/PR using an authorized GitHub write route, without merging. Owner reviews Home directions, dock versus Compact, palette and font substitution. Then qualify real mobile/Telegram keyboard, safe areas, foldable/short/landscape layouts, 200% text, reduced motion, screen readers and first-time Arabic user tasks. Original selected raster reference is not recovered; do not claim pixel fidelity. Production engineering remains blocked until explicit design approval.
 
 ## Open decisions
 
