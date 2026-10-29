@@ -27,3 +27,7 @@ Every accepted change records the owner decision, affected document section, and
 - UX-007 — TESTED PARTIALLY: 136px circle candidate; 40 browser layout cases passed after calendar target repair. Physical first-time user direction testing remains open.
 - Preserve UX-004 one-active-occurrence invariant, UX-005 confidence-based clarification, and UX-006 explicit maintenance completion wording. No backend implementation or central governance adoption is implied.
 - Reference attribution: latest retrievable conversation description plus UX v1 §17; original selected raster unavailable. See [dated review](../../ENGINEERING/REPORTS/DESIGN-REVIEW-2026-10-28.md).
+
+## 2026-10-29 — v0.3 visual refinement
+
+UX-011 — PROPOSED: quieter broken orbit arcs, 144px inset-ring Home circle with MADAR wordmark, start-aligned greeting, outlined summary cards, capture pills, segmented filters and inset composer. Requested as a refinement of the current design, not approval of final dimensions or prior proposals. Four directions, tap alternatives, synthetic fixtures, original product/UX references and palette values are preserved. Both Node suites and 40 Chromium shell layout/target cases PASS; physical device and user validation remain pending. Review in the same unmerged PR #3.
