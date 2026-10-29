@@ -26,3 +26,9 @@ node docs/ux/prototype/checks/design.cjs
 These are Node logic checks, not device qualification. See the [dated report](../../../ENGINEERING/REPORTS/DESIGN-REVIEW-2026-10-28.md) for actual browser results and NOT RUN cases. [Design System](../DESIGN_SYSTEM-v0.2.md) documents tokens/components/interactions. Font subsets and license text are embedded to keep the preview self-contained.
 
 UX-003 and final visual approval remain pending. Product/UX reference bytes are unchanged. Do not start production engineering from this prototype alone.
+
+## Visual refinement v0.3 — 2026-10-29
+
+The owner requested a more beautiful version of the current design. This pass keeps product behavior and palette values while refining the Home orbit into quiet broken arcs, a 144px inset-ring circle, asymmetric Arabic greeting, outlined summary cards, softer capture pills, segmented filters, and an inset internal composer. No idle decorative animation is added. Prototype fixture dates remain fixed at 28 October for regression consistency.
+
+Executed: both Node suites PASS; Chromium shell matrix 5 views × 4 widths × 2 appearances PASS with no horizontal overflow or buttons below 44×44px, including the footer. Real mobile, screen readers, 200% text, keyboard and user study remain NOT RUN. The visual result remains proposed for owner review.
