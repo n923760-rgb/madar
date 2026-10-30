@@ -77,3 +77,9 @@ run('events=[];c.down(0,0)');tick();run('c.move(0,-100);c.move(0,0);c.up(0,0)');
 run("move('home');$('orb').onpointerdown({clientX:0,clientY:0,pointerId:1,isPrimary:true,button:0})");tick();run("$('orb').onpointerup({clientX:0,clientY:0,preventDefault(){}})");assert.equal(route(),'processing');
 assert.ok(!/(fetch\(|XMLHttpRequest|localStorage|sessionStorage|getUserMedia|https?:\/\/)/.test(script));
 console.log('PASS: 20 templates and fixture journeys; hold threshold/release-once; four fast swipes; short tap; slide cancel and return; OS cancellation; actual Home release to processing. Node DOM stub only.');
+// User-configured physical shortcut uses the bound handler, not just a label.
+run("move('shortcuts');$('shortcut-calendar').value='text';$('shortcut-calendar').onchange();move('home')");assert.ok(run('destinations()').includes('data-go="text"'));
+run("$('orb').onpointerdown({clientX:150,clientY:200,pointerId:1,isPrimary:true,button:0});$('orb').onpointermove({clientX:150,clientY:90});$('orb').onpointerup({clientX:150,clientY:90,preventDefault(){}})");assert.equal(route(),'text');
+run("act('reset-shortcuts')");assert.equal(run('state.shortcuts.calendar'),'calendar');
+for(const name of ['task','appointment']){run(`state.scenario='${name}';move('processing');act('finish-processing')`);assert.equal(route(),'saved');assert.equal(run('state.saved.kind'),name==='task'?'مهمة':'موعد');assert.ok(screen().includes('data-go="calendar"'));run("act('undo')");assert.equal(run('state.saved'),null)}
+console.log('PASS: configured shortcut controls physical swipe and tap label; reset defaults; task without assumed time; appointment save/view/undo.');
