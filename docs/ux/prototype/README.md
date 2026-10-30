@@ -32,3 +32,9 @@ UX-003 and final visual approval remain pending. Product/UX reference bytes are 
 The owner requested a more beautiful version of the current design. This pass keeps product behavior and palette values while refining the Home orbit into quiet broken arcs, a 144px inset-ring circle, asymmetric Arabic greeting, outlined summary cards, softer capture pills, segmented filters, and an inset internal composer. No idle decorative animation is added. Prototype fixture dates remain fixed at 28 October for regression consistency.
 
 Executed: both Node suites PASS; Chromium shell matrix 5 views × 4 widths × 2 appearances PASS with no horizontal overflow or buttons below 44×44px, including the footer. Real mobile, screen readers, 200% text, keyboard and user study remain NOT RUN. The visual result remains proposed for owner review.
+
+## Home hold-to-record — 2026-10-30
+
+Hold Home's circle for 350ms to begin the simulated voice capture. Release submits directly to Processing, without Stop/Send taps. Before activation, a quick directional swipe still navigates. During recording, slide up 90px and release to cancel; move back before release to submit. A short tap explains the gesture. Keyboard users may hold/release Space or Enter; screen-reader activation and the disclosed alternative open explicit recording controls. Interruptions cancel safely. All audio remains simulated. Owner approval of this behavior is UX-012; real device qualification remains pending.
+
+Validation: both Node suites PASS; Chromium mouse hold/release and Space hold/release reached Processing without a second action. Short pointer click stayed Home with guidance. Node checks cover release-once, all four fast directions, slide cancellation/return, short tap, cancellation and actual bound Home handler. Mobile touch, screen reader and real audio remain NOT RUN.
