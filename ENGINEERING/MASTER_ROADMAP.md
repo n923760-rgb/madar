@@ -1,7 +1,7 @@
 # MADAR Master Roadmap
 
-Checkpoint: 2026-10-28. Current phase: **UX/UI design only**.
-Status: v0.2 PUBLISHED FOR REVIEW in [draft PR #3](https://github.com/n923760-rgb/madar/pull/3); private static preview published; owner design approval pending.
+Checkpoint: 2026-10-30. Current phase: **Approved design baseline; production engineering not started**.
+Status: OWNER APPROVED the current prototype and project instructions on 2026-10-30 ("تمام ادمج و اعتمد"). Merge authorized through stacked PR #3 → PR #2 → main. The private static preview remains a simulation.
 
 ## Verified source checkpoint
 
@@ -18,7 +18,7 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 | UX architecture | UX v1 imported unchanged; conflicts recorded | Resolve open details and document decision attribution |
 | First ten screen brief | Interactive source retained; five primary views refined | Owner review |
 | Wireframes/prototype | 40 browser layout cases and five simulated journeys checked | Physical device QA and visual approval |
-| UI approval | NOT VERIFIED | Owner review and open decisions resolved |
+| UI approval | Current prototype baseline APPROVED by owner, 2026-10-30 | Runtime/device qualification remains separate |
 | Usability/accessibility | Token contrast, browser targets/layout PASS | User study, real devices, screen readers NOT RUN |
 | AI evaluation set | NOT VERIFIED | Synthetic cases, expected outcomes, metrics and review |
 | Central governance adoption | PENDING | Approved source/version and adoption evidence |
@@ -42,12 +42,12 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 
 ## Exact next round
 
-Review draft PR #3 without merging. Owner reviews Home directions, dock versus Compact, palette and font substitution. Then qualify real mobile/Telegram keyboard, safe areas, foldable/short/landscape layouts, 200% text, reduced motion, screen readers and first-time Arabic user tasks. Original selected raster reference is not recovered; do not claim pixel fidelity. Production engineering remains blocked until explicit design approval.
+Complete the owner-authorized stacked merge of PR #3 into PR #2's branch, then PR #2 into main; use GitHub's merged state and merge commit for evidence. The current circle, configurable shortcuts, hold/release behavior, internal composer and dark/light visual system are the approved design baseline (UX-014). Qualify real mobile/Telegram keyboard, safe areas, foldable/short/landscape layouts, 200% text, reduced motion, screen readers and first-time Arabic user tasks. Original selected raster reference is not recovered; no pixel fidelity is claimed. Production implementation requires a bounded engineering task; no backend, live AI, microphone or production services are started by this merge.
 
 ## Open decisions
 
-- UX-003: internal voice composer location and appearance.
-- UX-007: circle diameter, visible navigation, RTL direction testing.
+- UX-003: current internal composer accepted as baseline under UX-014; physical keyboard/safe-area qualification remains open.
+- UX-007: current circle and visible navigation accepted as baseline under UX-014; physical device/first-user direction testing remains open.
 - UX-008: live transcription capability and privacy/retention choices.
 - ENG-001: selected central governance adoption version.
 
@@ -64,3 +64,7 @@ Owner-approved UX-012 replaces Home tap recording with hold/release submission. 
 ## 2026-10-30 central hub refinement
 
 Owner-directed configurable directions (UX-013) are available under Settings → Circle Shortcuts, with matching visible labels and Reset Defaults. Added Task and Appointment voice fixtures alongside Reminder; undated tasks do not invent a timed reminder. Node checks PASS; Chromium customized upward swipe opened Text and held Task capture produced the expected synthetic result. No real transcription/AI or persistence is claimed. See prototype README and Decision Log; review remains in unmerged PR #3.
+
+## 2026-10-30 owner approval and merge authorization
+
+The owner explicitly instructed "تمام ادمج و اعتمد" after reviewing the prototype and the repository reference/AGENTS status. This approves the current design baseline and project instructions and authorizes the dependency-ordered merge; it does not qualify unexecuted tests, activate real audio/AI/reminders, or select a central-governance version. Earlier dated review statements above are historical checkpoints. Both Node suites were rerun PASS against files matching remote PR #3 head `d8029c1d7f41311b9b91d85c1ba2e79f3793ead7`; reference integrity PASS. See UX-014 for the approval scope. GitHub PR merge metadata is authoritative for final integration status.
