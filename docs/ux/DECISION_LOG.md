@@ -31,3 +31,9 @@ Every accepted change records the owner decision, affected document section, and
 ## 2026-10-29 — v0.3 visual refinement
 
 UX-011 — PROPOSED: quieter broken orbit arcs, 144px inset-ring Home circle with MADAR wordmark, start-aligned greeting, outlined summary cards, capture pills, segmented filters and inset composer. Requested as a refinement of the current design, not approval of final dimensions or prior proposals. Four directions, tap alternatives, synthetic fixtures, original product/UX references and palette values are preserved. Both Node suites and 40 Chromium shell layout/target cases PASS; physical device and user validation remain pending. Review in the same unmerged PR #3.
+
+## 2026-10-30 — UX-012 DECIDED by owner: hold to record
+
+The owner explicitly replaces Home tap-to-start/tap-to-stop with press-and-hold recording and release-to-submit. Prototype candidate threshold: 350ms. Movement >24px before activation cancels the hold timer and permits the existing four physical directions. After recording starts, upward drag ≥90px arms cancellation; release cancels. Return to the circle before release resumes the send intention. OS pointer cancellation, lost capture, tab hiding, blur and navigation cancel without submission. Short taps show guidance. Space/Enter hold/release is supported; explicit start/stop/send controls remain an accessible alternative. This supersedes tap-default on Home in UX-001 and original reference §§6/5.2; original reference bytes stay unchanged. Internal capture controls remain explicit in this round.
+
+Release means end capture and submit for processing, not a claim of successful domain save. The selected synthetic fixture proceeds through the existing confidence/clarification pipeline. No microphone, actual audio storage, AI or notification service is introduced. Real phone touch and first-user validation remain pending.
