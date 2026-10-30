@@ -1,7 +1,7 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
 const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
 const elements=new Map();const el=id=>{if(!elements.has(id))elements.set(id,{value:'',innerHTML:'',textContent:'',dataset:{},style:{},classList:{add(){},remove(){},toggle(){}},focus(){},setAttribute(){},addEventListener(){},setPointerCapture(){}});return elements.get(id)};
-const ctx=vm.createContext({document:{getElementById:el,addEventListener(){},querySelector(){return null}},location:{reload(){}},setInterval(){},clearInterval(){},setTimeout(){}});vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],ctx);const run=s=>vm.runInContext(s,ctx);
+const ctx=vm.createContext({document:{getElementById:el,addEventListener(){},querySelector(){return null}},location:{reload(){}},setInterval(){},clearInterval(){},setTimeout(){},clearTimeout(){}});vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],ctx);const run=s=>vm.runInContext(s,ctx);
 run("move('things');state.thingQuery='السيارة'");assert.ok(run('thingCards()').includes('السيارة'));assert.ok(!run('thingCards()').includes('الغسالة'));
 run("state.thingQuery='';act('things-subscription')");assert.ok(el('screen').innerHTML.includes('ما فيه أشياء'));
 run("move('calendar');act('calendar-mode-month');act('day-29')");assert.ok(el('screen').innerHTML.includes('فحص السيارة'));
