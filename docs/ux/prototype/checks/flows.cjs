@@ -9,13 +9,15 @@ const element = id => {
   if (!elements.has(id)) elements.set(id, {
     value: '', textContent: '', innerHTML: '', dataset: {}, style: {},
     classList: {add(){}, remove(){}, toggle(){return true}},
-    focus(){}, setAttribute(){}, click(){},
+    focus(){}, setAttribute(){}, click(){}, listeners:{},
+    addEventListener(type, handler){this.listeners[type]=handler},
+    setPointerCapture(){}, insertAdjacentHTML(){},
   });
   return elements.get(id);
 };
 const context = vm.createContext({
-  document: {getElementById: element, addEventListener(){}, querySelector(){return null}},
-  location: {reload(){}}, setInterval(){return 1}, clearInterval(){}, setTimeout(){},
+  document: {getElementById: element, addEventListener(){}, querySelector(){return null}, querySelectorAll(){return []}},
+  location: {reload(){}}, setInterval(){return 1}, clearInterval(){}, setTimeout(){}, clearTimeout(){},
 });
 vm.runInContext(script, context);
 const run = expression => vm.runInContext(expression, context);
@@ -62,5 +64,22 @@ assert.ok(screen().includes('&lt;img'));
 assert.ok(!screen().includes('<img src=x'));
 run("move('home');move('things');back()");
 assert.equal(route(), 'home');
+// Exercise the same controller that the Home pointer/keyboard handlers bind.
+let pending;context.setTimeout=fn=>{pending=fn;return 1};context.clearTimeout=()=>{pending=null};
+run("var events=[];var c=holdController({reset(){events.push('reset')},listen(){events.push('listen')},cancelHint(v){events.push(v?'cancel-zone':'recording')},cancelled(){events.push('cancel')},send(){events.push('send')},navigate(r){events.push(r)},hint(){events.push('hint')}})");
+const tick=()=>{const fn=pending;pending=null;if(fn)fn()};
+for(const [x,y,d] of [[100,0,'things'],[-100,0,'inbox'],[0,-100,'calendar'],[0,100,'ask']]){run(`events=[];c.down(0,0);c.move(${x},${y});c.up(${x},${y})`);assert.equal(run('events.at(-1)'),d);tick();assert.ok(!run("events.includes('listen')"));}
+run('events=[];c.down(0,0)');tick();assert.equal(run('c.active'),true);run('c.up(0,0)');assert.equal(run("events.filter(e=>e==='send').length"),1);run('c.up(0,0)');assert.equal(run("events.filter(e=>e==='send').length"),1);
+run('events=[];c.down(0,0);c.up(0,0)');tick();assert.ok(!run("events.includes('send')||events.includes('listen')"));
+run('events=[];c.down(0,0)');tick();run('c.move(0,-100);c.up(0,-100)');assert.ok(run("events.includes('cancel')&&!events.includes('send')&&!events.includes('calendar')"));
+run('events=[];c.down(0,0)');tick();run('c.cancel();c.up(0,0)');assert.ok(!run("events.includes('send')"));
+run('events=[];c.down(0,0)');tick();run('c.move(0,-100);c.move(0,0);c.up(0,0)');assert.ok(run("events.includes('send')"));
+run("move('home');$('orb').onpointerdown({clientX:0,clientY:0,pointerId:1,isPrimary:true,button:0})");tick();run("$('orb').onpointerup({clientX:0,clientY:0,preventDefault(){}})");assert.equal(route(),'processing');
 assert.ok(!/(fetch\(|XMLHttpRequest|localStorage|sessionStorage|getUserMedia|https?:\/\/)/.test(script));
-console.log('PASS: 20 screen renders; low-risk save; clarification; mileage validation; correction undo; duplicate; offline retry; sourced answer; escaping; Back; no network or media APIs. Browser/device QA NOT RUN.');
+console.log('PASS: 20 templates and fixture journeys; hold threshold/release-once; four fast swipes; short tap; slide cancel and return; OS cancellation; actual Home release to processing. Node DOM stub only.');
+// User-configured physical shortcut uses the bound handler, not just a label.
+run("move('shortcuts');$('shortcut-calendar').value='text';$('shortcut-calendar').onchange();move('home')");assert.ok(run('destinations()').includes('data-go="text"'));
+run("$('orb').onpointerdown({clientX:150,clientY:200,pointerId:1,isPrimary:true,button:0});$('orb').onpointermove({clientX:150,clientY:90});$('orb').onpointerup({clientX:150,clientY:90,preventDefault(){}})");assert.equal(route(),'text');
+run("act('reset-shortcuts')");assert.equal(run('state.shortcuts.calendar'),'calendar');
+for(const name of ['task','appointment']){run(`state.scenario='${name}';move('processing');act('finish-processing')`);assert.equal(route(),'saved');assert.equal(run('state.saved.kind'),name==='task'?'مهمة':'موعد');assert.ok(screen().includes('data-go="calendar"'));run("act('undo')");assert.equal(run('state.saved'),null)}
+console.log('PASS: configured shortcut controls physical swipe and tap label; reset defaults; task without assumed time; appointment save/view/undo.');
