@@ -1,7 +1,7 @@
 # MADAR Master Roadmap
 
 Checkpoint: 2026-10-30. Current phase: **Approved design baseline; production engineering not started**.
-Status: OWNER APPROVED the current prototype and project instructions on 2026-10-30 ("تمام ادمج و اعتمد"). Merge authorized through stacked PR #3 → PR #2 → main. The private static preview remains a simulation.
+Status: OWNER APPROVED the current prototype and project instructions on 2026-10-30 ("تمام ادمج و اعتمد"). Integration is tracked through stacked PR #3 → PR #2 → main; GitHub merge metadata is authoritative. The private static preview remains a simulation.
 
 ## Verified source checkpoint
 
@@ -37,12 +37,12 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 
 - [Private interactive prototype](https://madar-design-review-oct28.n923760.chatgpt.site), owner-only; synthetic data; no production MADAR services.
 - [Prototype guide](../docs/ux/prototype/README.md), [Design System v0.2](../docs/ux/DESIGN_SYSTEM-v0.2.md), [dated review and exact test limits](REPORTS/DESIGN-REVIEW-2026-10-28.md).
-- Remote `design/minimal-premium-v0.2` starts at PR #2 head `dcc37b80069797ffe90a216dad11c30160b702aa`. [Draft PR #3](https://github.com/n923760-rgb/madar/pull/3) targets PR #2's branch. Browser publication was authorized after connector 403; all 11 changed files matched local blob hashes. Neither PR is merged.
+- [PR #3](https://github.com/n923760-rgb/madar/pull/3) merged into PR #2's branch on 2026-10-30 at `1047cd97ad2852ec723cde3d67e04151e734c1e1`. [PR #2](https://github.com/n923760-rgb/madar/pull/2) carries the complete approved baseline into main; its GitHub merged state/merge commit is the integration evidence. Browser publication was authorized after connector 403; source/test files matched local Git blob hashes.
 - `flows.cjs` and `design.cjs` PASS. Product/UX hashes unchanged. Browser matrix: 40 cases, no horizontal overflow or primary-screen buttons below 44px after repair. Five simulated fixture journeys exercised; final record-sharing adjustment checked in Node only.
 
 ## Exact next round
 
-Complete the owner-authorized stacked merge of PR #3 into PR #2's branch, then PR #2 into main; use GitHub's merged state and merge commit for evidence. The current circle, configurable shortcuts, hold/release behavior, internal composer and dark/light visual system are the approved design baseline (UX-014). Qualify real mobile/Telegram keyboard, safe areas, foldable/short/landscape layouts, 200% text, reduced motion, screen readers and first-time Arabic user tasks. Original selected raster reference is not recovered; no pixel fidelity is claimed. Production implementation requires a bounded engineering task; no backend, live AI, microphone or production services are started by this merge.
+The current circle, configurable shortcuts, hold/release behavior, internal composer and dark/light visual system are the approved design baseline (UX-014). Qualify real mobile/Telegram keyboard, safe areas, foldable/short/landscape layouts, 200% text, reduced motion, screen readers and first-time Arabic user tasks. Original selected raster reference is not recovered; no pixel fidelity is claimed. Production implementation requires a bounded engineering task; no backend, live AI, microphone or production services are started by this merge.
 
 ## Open decisions
 
@@ -59,11 +59,11 @@ This is the only roadmap. Update phase status from actual artifacts or owner dec
 
 ## 2026-10-30 interaction update
 
-Owner-approved UX-012 replaces Home tap recording with hold/release submission. The prototype retains fast directional swipes and adds slide-up cancellation, interruption cancellation, keyboard hold/release and explicit-button accessibility fallback. Both Node suites PASS; Chromium held-pointer release and held-Space release reached Processing, and a short pointer tap remained Home with guidance. Cancellation/direction races are covered in Node controller tests. Actual mobile touch, audio permissions and production recording remain NOT RUN/outside this design simulation. Review in unmerged PR #3; details in Decision Log and prototype guide.
+Owner-approved UX-012 replaces Home tap recording with hold/release submission. The prototype retains fast directional swipes and adds slide-up cancellation, interruption cancellation, keyboard hold/release and explicit-button accessibility fallback. Both Node suites PASS; Chromium held-pointer release and held-Space release reached Processing, and a short pointer tap remained Home with guidance. Cancellation/direction races are covered in Node controller tests. Actual mobile touch, audio permissions and production recording remain NOT RUN/outside this design simulation. Historical validation checkpoint before merge; details in Decision Log and prototype guide.
 
 ## 2026-10-30 central hub refinement
 
-Owner-directed configurable directions (UX-013) are available under Settings → Circle Shortcuts, with matching visible labels and Reset Defaults. Added Task and Appointment voice fixtures alongside Reminder; undated tasks do not invent a timed reminder. Node checks PASS; Chromium customized upward swipe opened Text and held Task capture produced the expected synthetic result. No real transcription/AI or persistence is claimed. See prototype README and Decision Log; review remains in unmerged PR #3.
+Owner-directed configurable directions (UX-013) are available under Settings → Circle Shortcuts, with matching visible labels and Reset Defaults. Added Task and Appointment voice fixtures alongside Reminder; undated tasks do not invent a timed reminder. Node checks PASS; Chromium customized upward swipe opened Text and held Task capture produced the expected synthetic result. No real transcription/AI or persistence is claimed. See prototype README and Decision Log; approval and integration are recorded below and in GitHub merge metadata.
 
 ## 2026-10-30 owner approval and merge authorization
 
