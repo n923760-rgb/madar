@@ -1,14 +1,14 @@
 # MADAR Master Roadmap
 
-Checkpoint: 2026-10-30. Current phase: **Approved design baseline; production engineering not started**.
+Checkpoint: 2026-10-31. Current phase: **Approved design baseline; production engineering not started**.
 Status: OWNER APPROVED the current prototype and project instructions on 2026-10-30 ("تمام ادمج و اعتمد"). Integration is tracked through stacked PR #3 → PR #2 → main; GitHub merge metadata is authoritative. The private static preview remains a simulation.
 
 ## Verified source checkpoint
 
 Repository: https://github.com/n923760-rgb/madar — public.
-Official main after authorized PR #1 merge: `efb9e91a7f0fe858d60ad1394c1dfd9c1b487e19`.
+Official main verified on 2026-10-31 after approved PR #2/#3 integration: `8b3b5daef3a53f4578082c3531899c00c27c9c9b`.
 Original documentation import: `21ad88e0e2432307d455b8ad80c9254284d507d4` on `docs/product-design-foundation`.
-Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pull/1) on 2026-10-14. Prototype changes are on `design/interactive-prototype-v0.1`; use the live branch/PR head for exact source. This checkpoint does not imply prototype merge or design approval.
+Organization was merged through PR #1 on 2026-10-14; design PR #3 merged into PR #2, then PR #2 merged into main on 2026-10-30. UX-014 records owner design approval. The new interruption qualification fixes are isolated on `design/interaction-qualification-v0.4`, pending PR review.
 
 ## Phase status
 
@@ -16,8 +16,8 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 |---|---|---|
 | Product specification | Product Master v2.1 imported unchanged | Preserve approved baseline; record amendments |
 | UX architecture | UX v1 imported unchanged; conflicts recorded | Resolve open details and document decision attribution |
-| First ten screen brief | Interactive source retained; five primary views refined | Owner review |
-| Wireframes/prototype | 40 browser layout cases and five simulated journeys checked | Physical device QA and visual approval |
+| First ten screen brief | Interactive source retained; five primary views approved | Device qualification |
+| Wireframes/prototype | Approved baseline; interruption fixes and 40 layout cases rechecked 2026-10-31 | Review new PR and physical device QA |
 | UI approval | Current prototype baseline APPROVED by owner, 2026-10-30 | Runtime/device qualification remains separate |
 | Usability/accessibility | Token contrast, browser targets/layout PASS | User study, real devices, screen readers NOT RUN |
 | AI evaluation set | NOT VERIFIED | Synthetic cases, expected outcomes, metrics and review |
@@ -68,3 +68,9 @@ Owner-directed configurable directions (UX-013) are available under Settings →
 ## 2026-10-30 owner approval and merge authorization
 
 The owner explicitly instructed "تمام ادمج و اعتمد" after reviewing the prototype and the repository reference/AGENTS status. This approves the current design baseline and project instructions and authorizes the dependency-ordered merge; it does not qualify unexecuted tests, activate real audio/AI/reminders, or select a central-governance version. Earlier dated review statements above are historical checkpoints. Both Node suites were rerun PASS against files matching remote PR #3 head `d8029c1d7f41311b9b91d85c1ba2e79f3793ead7`; reference integrity PASS. See UX-014 for the approval scope. GitHub PR merge metadata is authoritative for final integration status.
+
+## 2026-10-31 interruption qualification
+
+An added regression failed against main: losing pointer capture before the hold threshold could start recording later. Fixed pending/active pointer cancellation, keyboard focus-loss cancellation, Escape event containment, secondary pointer isolation and recording recentering. Both Node suites and `git diff --check` PASS. Chromium native held mouse and Space submission PASS; Space+Tab cancellation and Space+Escape local cancellation PASS. Rechecked 40 shell layout cases (five primary views × four widths × two themes): no horizontal overflow or primary-view buttons below 44×44px. This is desktop Chromium, not mobile touch qualification.
+
+[Qualification report and physical-device task script](REPORTS/INTERACTION-QUALIFICATION-2026-10-31.md). Next: review the isolated fixes; execute the script on Mate X6 folded/unfolded and Telegram, then scope the first implementation slice. No production backend/provider or unspecified governance adoption starts in this round.

@@ -257,31 +257,34 @@ function holdController(callbacks){
  down(x,y){if(origin)return;origin={x,y};active=false;dragged=false;cancelled=false;timer=setTimeout(()=>{if(origin&&!dragged){active=true;callbacks.listen()}},350)},
  move(x,y){if(!origin)return;const dx=x-origin.x,dy=y-origin.y;if(active){cancelled=dy<=-90;callbacks.cancelHint(cancelled)}else if(Math.hypot(dx,dy)>24){dragged=true;clear()}},
  up(x,y){if(!origin)return;const dx=x-origin.x,dy=y-origin.y;clear();origin=null;if(active){active=false;if(cancelled||dy<=-90){callbacks.reset();callbacks.cancelled()}else callbacks.send();return}if(dragged&&Math.hypot(dx,dy)>70&&Math.abs(Math.abs(dx)-Math.abs(dy))>20){callbacks.navigate(Math.abs(dx)>Math.abs(dy)?dx>0?'things':'inbox':dy>0?'ask':'calendar')}else{callbacks.reset();callbacks.hint()}},
- cancel, get active(){return active}
+ cancel, get active(){return active}, get engaged(){return origin!==null}
  };
 }
 function bindOrbit(){
  const orb=$('orb');if(!orb)return;
- const status=$('hold-status');let keyboard=false,pointerOrigin=null;
+ const status=$('hold-status');let keyboard=false,pointerOrigin=null,pointerId=null;
  const reset=()=>{state.recording=false;orb.style.transform='';orb.classList.remove('listening');orb.innerHTML=ico('mic')+'<strong>مدار</strong><small>اضغط مطولًا وتكلم</small>';status.textContent='ارفع إصبعك للإرسال · اسحب قبل التسجيل لوجهتك'};
  const control=holdController({
- listen(){state.recording=true;orb.classList.add('listening');orb.innerHTML=ico('mic')+'<strong>أسمعك…</strong><small>محاكاة صوتية</small>';status.textContent='ارفع للإرسال · اسحب لأعلى ٩٠ بكسل للإلغاء'},
+ listen(){state.recording=true;orb.style.transform='';orb.classList.add('listening');orb.innerHTML=ico('mic')+'<strong>أسمعك…</strong><small>محاكاة صوتية</small>';status.textContent='ارفع للإرسال · اسحب لأعلى ٩٠ بكسل للإلغاء'},
  cancelHint(cancelled){status.textContent=cancelled?'ارفع الآن لإلغاء التسجيل':'ارفع للإرسال · اسحب لأعلى للإلغاء'},reset,
  cancelled(){notify('أُلغي التسجيل التجريبي؛ لم يُرسل شيء.')},
  send(){state.voiceContext='capture';state.transcript=example().source;move('processing')},
  navigate(route){move(state.shortcuts[route])},hint(){notify('اضغط مطولًا للتسجيل، أو استخدم بديل أزرار التحكم.')}
  });
  orb.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();if(event.detail===0&&!keyboard)act('capture-voice');keyboard=false;},true);
- orb.onpointerdown=event=>{if(!event.isPrimary||event.button!==0)return;pointerOrigin={x:event.clientX,y:event.clientY};orb.setPointerCapture(event.pointerId);control.down(event.clientX,event.clientY)};
- orb.onpointermove=event=>{control.move(event.clientX,event.clientY);if(pointerOrigin&&!control.active){const x=Math.max(-24,Math.min(24,(event.clientX-pointerOrigin.x)/3));const y=Math.max(-24,Math.min(24,(event.clientY-pointerOrigin.y)/3));orb.style.transform=`translate(${x}px,${y}px)`}};
- orb.onpointerup=event=>{event.preventDefault();pointerOrigin=null;orb.style.transform='';control.up(event.clientX,event.clientY)};
- orb.onpointercancel=()=>{pointerOrigin=null;control.cancel()};orb.onlostpointercapture=()=>{if(control.active)control.cancel()};
+ const interrupt=()=>{pointerOrigin=null;pointerId=null;keyboard=false;control.cancel()};
+ orb.onpointerdown=event=>{if(!event.isPrimary||event.button!==0||control.engaged)return;pointerOrigin={x:event.clientX,y:event.clientY};pointerId=event.pointerId;orb.setPointerCapture(pointerId);control.down(event.clientX,event.clientY)};
+ orb.onpointermove=event=>{if(event.pointerId!==pointerId)return;control.move(event.clientX,event.clientY);if(pointerOrigin&&!control.active){const x=Math.max(-24,Math.min(24,(event.clientX-pointerOrigin.x)/3));const y=Math.max(-24,Math.min(24,(event.clientY-pointerOrigin.y)/3));orb.style.transform=`translate(${x}px,${y}px)`}};
+ orb.onpointerup=event=>{if(event.pointerId!==pointerId)return;event.preventDefault();pointerOrigin=null;pointerId=null;orb.style.transform='';control.up(event.clientX,event.clientY)};
+ orb.onpointercancel=event=>{if(event.pointerId===pointerId)interrupt()};
+ orb.onlostpointercapture=event=>{if(event.pointerId===pointerId)interrupt()};
+ orb.onblur=interrupt;
  orb.oncontextmenu=event=>event.preventDefault();
- orb.onkeydown=event=>{if(event.key==='Escape'){event.preventDefault();control.cancel();notify('أُلغي التسجيل.');return}if((event.key===' '||event.key==='Enter')&&!event.repeat){event.preventDefault();keyboard=true;control.down(0,0)}};
- orb.onkeyup=event=>{if(event.key===' '||event.key==='Enter'){event.preventDefault();control.up(0,0);keyboard=false}};
- const visibility=()=>{if(document.hidden)control.cancel()};
- if(typeof window!=='undefined'){window.addEventListener('blur',control.cancel);document.addEventListener('visibilitychange',visibility)}
- disposeOrbit=()=>{control.cancel();if(typeof window!=='undefined'){window.removeEventListener('blur',control.cancel);document.removeEventListener('visibilitychange',visibility)}disposeOrbit=()=>{}};
+ orb.onkeydown=event=>{if(event.key==='Escape'&&control.engaged){event.preventDefault();event.stopPropagation();interrupt();notify('أُلغي التسجيل التجريبي؛ لم يُرسل شيء.');return}if(event.key===' '||event.key==='Enter'){event.preventDefault();if(!event.repeat&&!control.engaged){keyboard=true;control.down(0,0)}}};
+ orb.onkeyup=event=>{if(event.key===' '||event.key==='Enter'){event.preventDefault();if(keyboard)control.up(0,0);keyboard=false}};
+ const visibility=()=>{if(document.hidden)interrupt()};
+ if(typeof window!=='undefined'){window.addEventListener('blur',interrupt);document.addEventListener('visibilitychange',visibility)}
+ disposeOrbit=()=>{interrupt();if(typeof window!=='undefined'){window.removeEventListener('blur',interrupt);document.removeEventListener('visibilitychange',visibility)}disposeOrbit=()=>{}};
 }
 if(typeof window!=='undefined'){history.replaceState({route:'home'},'', '#home');window.addEventListener('popstate',event=>{state.history.pop();move(event.state?.route||'home',false)})}
 render();
