@@ -14,6 +14,8 @@ node docs/product/capture-v2.2/check.cjs
 
 The demo executes five golden proposals: undated task, timed task/reminder, appointment, missing-time clarification and an invoice deferred without domain writes. Replaying each yields the same result. Reversing the timed task leaves the two unrelated records active and cancels its single reminder occurrence. The fixed synthetic clock is 31 October 2026 at 09:00 in Riyadh; no real notification is sent.
 
+`proposal_gate.py` is an optional context-binding experiment: obtain context before producing a proposal, freeze its payload with `prepare`, then `execute` through core validation. Source changes reject old context before preparation and execution. Preparing is neither validation nor saving. Eight additional tests cover stale-result ordering, owner policy, frozen payloads, retry/reversal and invalid execution. Direct core calls remain available, dictionaries have no concurrency/expiry guarantees, and caller identity is still trusted. See the [integration design](../../docs/product/capture-v2.2/INTEGRATION-DESIGN.md) for the candidate authenticated, transactional and UI boundary.
+
 ## What actually executes
 
 | Behavior | Local implementation |
