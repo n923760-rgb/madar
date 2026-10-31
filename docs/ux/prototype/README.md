@@ -44,3 +44,9 @@ Validation: both Node suites PASS; Chromium mouse hold/release and Space hold/re
 Destination menu → Settings → Circle Shortcuts lets the reviewer assign each direction to a real prototype view, then return Home. Labels and physical swipes use the same mapping. Reset restores Up Calendar, Right Things, Left Inbox, Down Ask. The circle follows the finger slightly as directional feedback before recording starts.
 
 The scenario selector now includes Task (no assumed deadline) and Appointment (explicit date/time), in addition to Reminder. Hold/release submits the fixture to Processing; “show simulated analysis result” completes the design demonstration. It does not analyze actual speech or arbitrary text. Result cards expose kind, details, View and Undo. Both Node suites PASS; browser custom-upward-swipe and held Task fixture PASS. Real phone touch and AI interpretation NOT RUN.
+
+## Interruption qualification — 2026-10-31
+
+The candidate fix cancels pending or active capture when pointer capture or keyboard focus is lost, isolates the primary pointer, and consumes Escape during a hold before global Back. Small pre-hold drift recenters when listening starts. The approved 350ms hold, four directions, release-to-process and explicit capture alternative are preserved.
+
+Both Node suites and 40 Chromium shell layouts PASS; native mouse/Space release, Space+Tab cancellation and Space+Escape local cancellation PASS. Lost capture, focus loss during recording and secondary-pointer cases are additionally covered by the Node binding tests. Physical mobile, screen readers, 200% text and real audio remain NOT RUN. See [qualification report](../../../ENGINEERING/REPORTS/INTERACTION-QUALIFICATION-2026-10-31.md) for the device script and exact limits.
