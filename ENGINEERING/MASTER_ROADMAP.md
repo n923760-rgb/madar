@@ -77,3 +77,11 @@ Owner asks MADAR to receive natural requests (tasks, appointments, reminders, in
 `node docs/product/capture-v2.2/check.cjs` PASS: 46 synthetic expected-output fixtures, 17 invalid proposals rejected, original reference hashes unchanged. No actual AI, voice/OCR, parsing, database, authorization enforcement or reminder delivery was exercised. The fixture verifier is not a production validator. Proposed next slice: authenticated deterministic text → task/appointment + source + one active occurrence + Edit/Undo, before real providers. Attachment limits/retention and provider selection remain open. This round creates no backend or production services.
 
 Official main verified at `8b3b5daef3a53f4578082c3531899c00c27c9c9b`; separate [PR #4](https://github.com/n923760-rgb/madar/pull/4) remains open for circle interruption fixes. This product/prompt branch is independently based on main, with no automatic merge or governance adoption.
+
+## 2026-10-31 local action-core experiment
+
+Continuation builds a bounded local experiment in [experiments/capture_core](../experiments/capture_core/README.md), stacked on the v2.2 contract branch/PR #5. It consumes reviewed structured proposals and actually validates/saves task, appointment and reminder records in session memory, with preserved sources, owner-scoped access policy, exact retry idempotency, one active occurrence, clarification round-trip and action-specific reversal. Unsupported domain families defer the whole group. It does not perform natural-language understanding or execute invoice routing.
+
+30 Python behavior tests PASS; five-proposal demo PASS; v2.2 fixture verifier PASS (46 expected outputs / 17 invalid proposals); reference integrity and `git diff --check` PASS. No authentication integration, durable storage, provider, audio/OCR, file ingestion, concurrency, edit/recurrence/delivery or UI/mobile integration is qualified. This is a local synthetic experiment, not production backend implementation. Current production status remains NOT STARTED.
+
+Next bounded task: review the experiment and contract together, then design the authenticated adapter, persistence transactions and UI integration before any real personal data or production services are enabled. PR #4 circle fixes remain separate. No automatic merge or central-governance adoption is implied.
