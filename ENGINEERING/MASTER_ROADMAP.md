@@ -20,7 +20,7 @@ Organization was merged through [PR #1](https://github.com/n923760-rgb/madar/pul
 | Wireframes/prototype | 40 browser layout cases and five simulated journeys checked | Physical device QA and visual approval |
 | UI approval | Current prototype baseline APPROVED by owner, 2026-10-30 | Runtime/device qualification remains separate |
 | Usability/accessibility | Token contrast, browser targets/layout PASS | User study, real devices, screen readers NOT RUN |
-| AI evaluation set | NOT VERIFIED | Synthetic cases, expected outcomes, metrics and review |
+| AI evaluation set | v2.2 synthetic contract set prepared: 46 expected-output cases and 17 invalid-proposal checks | Real provider/extraction evaluation NOT RUN |
 | Central governance adoption | PENDING | Approved source/version and adoption evidence |
 | Production engineering | NOT STARTED | Explicit design approval and bounded engineering task |
 
@@ -46,6 +46,7 @@ The current circle, configurable shortcuts, hold/release behavior, internal comp
 
 ## Open decisions
 
+- v2.2 capture understanding: [owner direction, classification/storage rules, prompt and contract candidates](../docs/product/capture-v2.2/MASTER-ADDENDUM.md); review before provider integration.
 - UX-003: current internal composer accepted as baseline under UX-014; physical keyboard/safe-area qualification remains open.
 - UX-007: current circle and visible navigation accepted as baseline under UX-014; physical device/first-user direction testing remains open.
 - UX-008: live transcription capability and privacy/retention choices.
@@ -68,3 +69,11 @@ Owner-directed configurable directions (UX-013) are available under Settings →
 ## 2026-10-30 owner approval and merge authorization
 
 The owner explicitly instructed "تمام ادمج و اعتمد" after reviewing the prototype and the repository reference/AGENTS status. This approves the current design baseline and project instructions and authorizes the dependency-ordered merge; it does not qualify unexecuted tests, activate real audio/AI/reminders, or select a central-governance version. Earlier dated review statements above are historical checkpoints. Both Node suites were rerun PASS against files matching remote PR #3 head `d8029c1d7f41311b9b91d85c1ba2e79f3793ead7`; reference integrity PASS. See UX-014 for the approval scope. GitHub PR merge metadata is authoritative for final integration status.
+
+## 2026-10-31 capture understanding v2.2
+
+Owner asks MADAR to receive natural requests (tasks, appointments, reminders, invoices and similar personal records), classify and store them correctly, and develop the existing prompt. [v2.2 addendum](../docs/product/capture-v2.2/MASTER-ADDENDUM.md) refines v2.1 without changing original bytes. It defines input-versus-intent separation, evidence/field confidence, invoice expense/asset/document routing, undated tasks, time ambiguity, multi-intent atomic proposals, source preservation, duplicate handling and action-specific Undo. Broad capture is accepted scope; schema/prompt details remain implementation candidates. `AGENTS.md` points agents to this reference chain.
+
+`node docs/product/capture-v2.2/check.cjs` PASS: 46 synthetic expected-output fixtures, 17 invalid proposals rejected, original reference hashes unchanged. No actual AI, voice/OCR, parsing, database, authorization enforcement or reminder delivery was exercised. The fixture verifier is not a production validator. Proposed next slice: authenticated deterministic text → task/appointment + source + one active occurrence + Edit/Undo, before real providers. Attachment limits/retention and provider selection remain open. This round creates no backend or production services.
+
+Official main verified at `8b3b5daef3a53f4578082c3531899c00c27c9c9b`; separate [PR #4](https://github.com/n923760-rgb/madar/pull/4) remains open for circle interruption fixes. This product/prompt branch is independently based on main, with no automatic merge or governance adoption.
