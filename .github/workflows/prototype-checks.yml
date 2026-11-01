@@ -1,0 +1,35 @@
+name: Prototype checks
+
+on:
+  pull_request:
+  push:
+    branches: [main, design/capture-state-prototype]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prototype-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prototype:
+    name: Synthetic prototype and reference checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Set up Node 24
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Capture and recovery behavior
+        run: node --test docs/ux/prototype/checks/capture.cjs
+      - name: Navigation and circle behavior
+        run: node docs/ux/prototype/checks/flows.cjs
+      - name: Design tokens and reference integrity
+        run: node docs/ux/prototype/checks/design.cjs
