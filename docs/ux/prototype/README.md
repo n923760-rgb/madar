@@ -71,3 +71,11 @@ node docs/ux/prototype/checks/design.cjs
 ```
 
 Validation checkpoint: 12 added Node tests PASS, existing flow/design suites PASS, semantic palette text/control contrast and original reference hashes PASS, `git diff --check` PASS. Chromium interaction checks PASS: missing-time question, empty-time inline error, explicit 18:30 answer, separate source/answer, lost response after mock commit, offline reconciliation refusal and successful same-operation reconciliation. 56 phone-shell cases PASS (Home, Inbox, My Things, Calendar, Ask, new saved status and new source × 320/360/390/430 × dark/light), no horizontal overflow or visible controls below 44px within the measurement tolerance (43px). These are desktop Chromium shell sizes, not real device viewports. Model accuracy, real networking/storage/auth, mobile touch/Telegram WebView, screen readers, 200% text and notification delivery remain NOT RUN. Semantic palette checks do not qualify every rendered state or focus announcement.
+
+### Draft and navigation repair — 2026-11-01
+
+The time input now keeps an unsubmitted draft per capture while navigating within the page; it does not append evidence, increment the source revision or create a receipt until explicitly confirmed. A second capture starts empty. Enter confirms a valid explicit time; errors mark the input with `aria-invalid` and reference its help/error text.
+
+History entries now bind route and selected capture, including two captures opened on the same route. Back/Forward restore that context; a new branch of navigation discards forward entries. This repairs source/detail mixing caused by a single global selection. Browser history contains only local route/index/capture references, never source text.
+
+Current checks: 16 capture tests PASS (12 existing + 4 regressions); existing flow/design suites and reference/palette checks PASS; `git diff --check` PASS. Chromium interaction checks PASS: retained 18:45 draft after Inbox, second capture empty, native Back to capture-2, Forward to capture-1 with its draft, and Enter to Committing. Physical phone/Telegram, actual virtual keyboard, screen reader announcements and 200% text remain NOT RUN. The 56-case layout checkpoint above is historical and was not repeated for this logic-only repair. No real persistence, authentication or backend integration is introduced.
