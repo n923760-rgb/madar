@@ -90,3 +90,9 @@ Follow-up within the PR #8 design branch fixes unsubmitted time loss and cross-c
 16 capture tests PASS (12 existing + 4 regression cases), existing flow/design suites and original-reference/palette checks PASS; Chromium draft retention, second-capture isolation, native Back/Forward context and Enter confirmation PASS; `git diff --check` PASS. See the prototype guide for exact evidence. The earlier 56-case shell matrix remains a dated checkpoint, not a rerun. Physical Mate X6/Telegram/virtual keyboard, screen readers and 200% text remain NOT RUN. No production service, governance adoption or automatic merge. Next: execute the physical-device script, review accessibility and prepare the bounded durable-text implementation only after that review.
 
 Private preview republished successfully from Site source `df4ac89633798e77055e9a7fdc3b521ccb070bae` at https://madar-design-review-oct28.n923760.chatgpt.site. Owner-only audience preserved.
+
+## 2026-11-01 automated prototype validation
+
+Added a read-only GitHub Actions workflow for the three prototype Node suites, using Node 24 and commit-pinned official actions. It covers capture/recovery, circle/navigation and design/reference assertions without deployment, secrets or provider calls. Workflow YAML parsing and all three local commands PASS (16 capture tests plus existing flow/design checks); `git diff --check` PASS. Hosted CI status must be read from its run; it is not inferred from local PASS. Branch protection, real device/accessibility and production integration remain unchanged/unqualified. No automatic merge or central-governance adoption.
+
+Hosted execution subsequently verified PASS: https://github.com/n923760-rgb/madar/actions/runs/41334387631 — the capture, flow/navigation and design/reference steps all succeeded. This establishes the first hosted workflow result, not branch protection or device/provider qualification.
