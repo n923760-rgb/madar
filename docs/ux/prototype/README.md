@@ -79,3 +79,9 @@ The time input now keeps an unsubmitted draft per capture while navigating withi
 History entries now bind route and selected capture, including two captures opened on the same route. Back/Forward restore that context; a new branch of navigation discards forward entries. This repairs source/detail mixing caused by a single global selection. Browser history contains only local route/index/capture references, never source text.
 
 Current checks: 16 capture tests PASS (12 existing + 4 regressions); existing flow/design suites and reference/palette checks PASS; `git diff --check` PASS. Chromium interaction checks PASS: retained 18:45 draft after Inbox, second capture empty, native Back to capture-2, Forward to capture-1 with its draft, and Enter to Committing. Physical phone/Telegram, actual virtual keyboard, screen reader announcements and 200% text remain NOT RUN. The 56-case layout checkpoint above is historical and was not repeated for this logic-only repair. No real persistence, authentication or backend integration is introduced.
+
+### Automated checks
+
+`.github/workflows/prototype-checks.yml` runs the three Node suites on pull requests, pushes to main/the current design branch, and manual dispatch. It uses Node 24, commit-pinned official checkout/setup actions, read-only repository permission, no retained checkout credentials, a five-minute timeout and cancellation of superseded runs. It installs no project packages and has no deployment or provider step. It uses `pull_request`, never `pull_request_target`.
+
+A green run means synthetic behavior, palette assertions and original-reference hashes passed; it does not qualify browser layout, assistive technology, physical mobile, AI, authentication, durable storage or delivery. Check the actual GitHub run before reporting CI as PASS. Local execution and workflow YAML parsing alone do not prove hosted execution. Required-check branch protection is not configured by this file.
