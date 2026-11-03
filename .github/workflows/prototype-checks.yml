@@ -33,3 +33,11 @@ jobs:
         run: node docs/ux/prototype/checks/flows.cjs
       - name: Design tokens and reference integrity
         run: node docs/ux/prototype/checks/design.cjs
+      - name: Capture proposal contract and fixtures
+        run: node docs/product/capture-v2.2/check.cjs
+      - name: Python runtime
+        run: python3 --version
+      - name: Synthetic capture core and proposal gate
+        run: python3 -m unittest discover -s experiments/capture_core -p 'test_*.py'
+      - name: Synthetic five-proposal walkthrough
+        run: python3 experiments/capture_core/demo.py

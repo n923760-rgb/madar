@@ -20,7 +20,7 @@ Organization was merged through PR #1 on 2026-10-14; design PR #3 merged into PR
 | Wireframes/prototype | Approved baseline; interruption fixes and 40 layout cases rechecked 2026-10-31 | Review new PR and physical device QA |
 | UI approval | Current prototype baseline APPROVED by owner, 2026-10-30 | Runtime/device qualification remains separate |
 | Usability/accessibility | Token contrast, browser targets/layout PASS | User study, real devices, screen readers NOT RUN |
-| AI evaluation set | NOT VERIFIED | Synthetic cases, expected outcomes, metrics and review |
+| AI evaluation set | v2.2 synthetic contract set prepared: 46 expected-output cases and 17 invalid-proposal checks | Real provider/extraction evaluation NOT RUN |
 | Central governance adoption | PENDING | Approved source/version and adoption evidence |
 | Production engineering | NOT STARTED | Explicit design approval and bounded engineering task |
 
@@ -46,6 +46,7 @@ The current circle, configurable shortcuts, hold/release behavior, internal comp
 
 ## Open decisions
 
+- v2.2 capture understanding: [owner direction, classification/storage rules, prompt and contract candidates](../docs/product/capture-v2.2/MASTER-ADDENDUM.md); review before provider integration.
 - UX-003: current internal composer accepted as baseline under UX-014; physical keyboard/safe-area qualification remains open.
 - UX-007: current circle and visible navigation accepted as baseline under UX-014; physical device/first-user direction testing remains open.
 - UX-008: live transcription capability and privacy/retention choices.
@@ -108,3 +109,36 @@ Invoice review now offers source-only retention or explicit association with the
 [Integration review](REPORTS/INTEGRATION-REVIEW-2026-11-02.md) pins published heads and reruns both workstreams: PR #8's 19 capture tests plus flow/design checks PASS; PR #7's 38 Python tests, five-proposal demo and 46-output/17-rejection specification verifier PASS. A local read-only merge-tree probe found a roadmap conflict between the two chain tips. No remote merge or combined runtime qualification was performed. UI invoice behavior remains independent from the Python adapter, which defers invoices. Existing CI covers UI only; physical-device/accessibility, real identity/storage/provider/delivery and central-governance adoption remain unqualified.
 
 Next: review the pinned integration procedure, resolve the roadmap in an authorized isolated integration branch retaining both dated histories, then rerun combined checks and extend CI. No automatic merge, production service or preview change in this review.
+## 2026-10-31 capture understanding v2.2
+
+Owner asks MADAR to receive natural requests (tasks, appointments, reminders, invoices and similar personal records), classify and store them correctly, and develop the existing prompt. [v2.2 addendum](../docs/product/capture-v2.2/MASTER-ADDENDUM.md) refines v2.1 without changing original bytes. It defines input-versus-intent separation, evidence/field confidence, invoice expense/asset/document routing, undated tasks, time ambiguity, multi-intent atomic proposals, source preservation, duplicate handling and action-specific Undo. Broad capture is accepted scope; schema/prompt details remain implementation candidates. `AGENTS.md` points agents to this reference chain.
+
+`node docs/product/capture-v2.2/check.cjs` PASS: 46 synthetic expected-output fixtures, 17 invalid proposals rejected, original reference hashes unchanged. No actual AI, voice/OCR, parsing, database, authorization enforcement or reminder delivery was exercised. The fixture verifier is not a production validator. Proposed next slice: authenticated deterministic text → task/appointment + source + one active occurrence + Edit/Undo, before real providers. Attachment limits/retention and provider selection remain open. This round creates no backend or production services.
+
+Official main verified at `8b3b5daef3a53f4578082c3531899c00c27c9c9b`; separate [PR #4](https://github.com/n923760-rgb/madar/pull/4) remains open for circle interruption fixes. This product/prompt branch is independently based on main, with no automatic merge or governance adoption.
+
+## 2026-10-31 local action-core experiment
+
+Continuation builds a bounded local experiment in [experiments/capture_core](../experiments/capture_core/README.md), stacked on the v2.2 contract branch/PR #5. It consumes reviewed structured proposals and actually validates/saves task, appointment and reminder records in session memory, with preserved sources, owner-scoped access policy, exact retry idempotency, one active occurrence, clarification round-trip and action-specific reversal. Unsupported domain families defer the whole group. It does not perform natural-language understanding or execute invoice routing.
+
+30 Python behavior tests PASS; five-proposal demo PASS; v2.2 fixture verifier PASS (46 expected outputs / 17 invalid proposals); reference integrity and `git diff --check` PASS. No authentication integration, durable storage, provider, audio/OCR, file ingestion, concurrency, edit/recurrence/delivery or UI/mobile integration is qualified. This is a local synthetic experiment, not production backend implementation. Current production status remains NOT STARTED.
+
+Next bounded task: review the experiment and contract together, then design the authenticated adapter, persistence transactions and UI integration before any real personal data or production services are enabled. PR #4 circle fixes remain separate. No automatic merge or central-governance adoption is implied.
+
+## 2026-10-31 capture integration boundary review
+
+[Integration design](../docs/product/capture-v2.2/INTEGRATION-DESIGN.md) reviews the experiment's gaps and proposes authenticated identity, source/context revision binding, durable ingest versus domain commit, transaction/uniqueness policy, timeout reconciliation, targeted reversal with dependency checks, and truthful states across the five approved views. It preserves clear low-risk automatic capture, existing navigation and the one-active-occurrence invariant. Session policy, private-file limits and durable migrations remain candidates, not implemented integrations.
+
+Optional local `ProposalGate` freezes proposed payloads and rejects late results after clarification changes source context. All 38 Python behavior tests PASS (30 existing + 8 new); five-proposal demo PASS; v2.2 specification verifier PASS (46 expected outputs / 17 invalid proposals), original reference hashes unchanged; `git diff --check` PASS. This is a synthetic in-memory ordering experiment, not authentication, a concurrent transaction, production persistence or a live UI connection. Auth/session, PostgreSQL/restart/concurrency, real provider/files/audio, delivery and UI/device tests remain NOT RUN. Production engineering remains NOT STARTED; no new services or deployment.
+
+Next bounded task: prototype clarification, timeout/reconciliation and committed-receipt states with synthetic responses in the approved interface, then qualify mobile/accessibility before implementing the authenticated durable text slice. PRs #4–#6 remain separate review dependencies; no automatic merge or central-governance adoption.
+
+## 2026-11-03 owner-authorized integration
+
+The owner explicitly instructed "تمام كمل و ادمج", authorizing the dependency-ordered integration of PRs #8/#4 and #7/#6/#5. Earlier no-automatic-merge statements describe historical review checkpoints, not the current authorization. Both dated roadmap histories are retained. No production service, real personal data, central-governance adoption or physical-device qualification is authorized or implied by this merge.
+
+Combined-tree qualification PASS: 19 Node capture behavior tests; prototype flow/design checks including reference integrity and semantic text/control contrast (minimum text contrast: dark 7.17, light 5.34); 38 Python core/gate tests; five-proposal demo; 46 golden output fixtures and 17 invalid-proposal rejections; git diff --check. Product v2.1 and UX v1 original bytes remain unchanged. CI now includes the proposal verifier and Python experiment checks alongside the UI suites. Hosted CI status and final merge SHAs must be verified from GitHub; local results alone do not establish hosted success.
+
+The JavaScript receipt ledger and Python adapter remain independent synthetic experiments. Real classification, audio/OCR, authenticated identity, durable storage, files and reminder delivery are NOT implemented. Physical mobile/Telegram, screen readers and 200% text remain NOT RUN. Production engineering remains NOT STARTED; central-governance adoption remains PENDING.
+
+Next: qualify the approved five-view prototype on physical mobile/Telegram and assistive technology, then review the authenticated durable text integration design before implementing production behavior. This integration accepts the reviewed design/specification/experiment baseline; it does not qualify provider accuracy or live storage/delivery. GitHub PR metadata is authoritative for final merge status.

@@ -9,6 +9,8 @@ Owner instructions and approved product decisions govern the project. Read `docs
 
 Read `docs/ux/DECISION_LOG.md` for conflicts and proposed changes. In a conflict, use the explicit v2.1 product invariant until the owner approves a superseding decision. Preserve the original reference files; put proposed amendments in a separate document.
 
+For natural request/attachment understanding, also read `docs/product/capture-v2.2/MASTER-ADDENDUM.md` and its linked model prompt, proposal contract and synthetic evaluation set. The owner requested broad personal capture coverage on 2026-10-31; detailed v2.2 contracts are implementation candidates, not evidence of a working model, storage or delivery. Preserve v2.1 invariants and accepted UX-012/014 amendments. Run `node docs/product/capture-v2.2/check.cjs` when changing those contracts/fixtures; report fixture checks separately from actual provider evaluation.
+
 Production backend, frontend, and database work is blocked until design approval. Design prototypes must be identified as prototypes and must not claim live AI, real persistence, or reminder delivery.
 
 ## Work discipline
