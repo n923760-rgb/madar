@@ -74,12 +74,34 @@ run('events=[];c.down(0,0);c.up(0,0)');tick();assert.ok(!run("events.includes('s
 run('events=[];c.down(0,0)');tick();run('c.move(0,-100);c.up(0,-100)');assert.ok(run("events.includes('cancel')&&!events.includes('send')&&!events.includes('calendar')"));
 run('events=[];c.down(0,0)');tick();run('c.cancel();c.up(0,0)');assert.ok(!run("events.includes('send')"));
 run('events=[];c.down(0,0)');tick();run('c.move(0,-100);c.move(0,0);c.up(0,0)');assert.ok(run("events.includes('send')"));
-run("move('home');$('orb').onpointerdown({clientX:0,clientY:0,pointerId:1,isPrimary:true,button:0})");tick();run("$('orb').onpointerup({clientX:0,clientY:0,preventDefault(){}})");assert.equal(route(),'processing');
+run("move('home');$('orb').onpointerdown({clientX:0,clientY:0,pointerId:1,isPrimary:true,button:0})");tick();run("$('orb').onpointerup({clientX:0,clientY:0,pointerId:1,preventDefault(){}})");assert.equal(route(),'processing');
 assert.ok(!/(fetch\(|XMLHttpRequest|localStorage|sessionStorage|getUserMedia|https?:\/\/)/.test(script));
 console.log('PASS: 20 templates and fixture journeys; hold threshold/release-once; four fast swipes; short tap; slide cancel and return; OS cancellation; actual Home release to processing. Node DOM stub only.');
 // User-configured physical shortcut uses the bound handler, not just a label.
 run("move('shortcuts');$('shortcut-calendar').value='text';$('shortcut-calendar').onchange();move('home')");assert.ok(run('destinations()').includes('data-go="text"'));
-run("$('orb').onpointerdown({clientX:150,clientY:200,pointerId:1,isPrimary:true,button:0});$('orb').onpointermove({clientX:150,clientY:90});$('orb').onpointerup({clientX:150,clientY:90,preventDefault(){}})");assert.equal(route(),'text');
+run("$('orb').onpointerdown({clientX:150,clientY:200,pointerId:1,isPrimary:true,button:0});$('orb').onpointermove({clientX:150,clientY:90,pointerId:1});$('orb').onpointerup({clientX:150,clientY:90,pointerId:1,preventDefault(){}})");assert.equal(route(),'text');
 run("act('reset-shortcuts')");assert.equal(run('state.shortcuts.calendar'),'calendar');
 for(const name of ['task','appointment']){run(`state.scenario='${name}';move('processing');act('finish-processing')`);assert.equal(route(),'saved');assert.equal(run('state.saved.kind'),name==='task'?'مهمة':'موعد');assert.ok(screen().includes('data-go="calendar"'));run("act('undo')");assert.equal(run('state.saved'),null)}
 console.log('PASS: configured shortcut controls physical swipe and tap label; reset defaults; task without assumed time; appointment save/view/undo.');
+// Interruption regressions: losing the input must never submit or start later.
+const down = "$('orb').onpointerdown({clientX:0,clientY:0,pointerId:1,isPrimary:true,button:0})";
+run("move('home');"+down+";$('orb').onlostpointercapture({pointerId:1})");tick();
+assert.equal(run('state.recording'),false,'lost pointer capture before threshold cancels pending hold');
+run("move('home');$('orb').onkeydown({key:' ',repeat:false,preventDefault(){}});$('orb').onblur()");tick();
+assert.equal(run('state.recording'),false,'Tab/focus loss cancels pending keyboard hold');
+run("move('home');$('orb').onkeydown({key:' ',repeat:false,preventDefault(){}})");tick();
+run("$('orb').onblur();$('orb').onkeyup({key:' ',preventDefault(){}})");
+assert.equal(route(),'home','focus loss during recording never submits on late keyup');
+run("move('home');$('orb').onkeydown({key:' ',repeat:false,preventDefault(){}})");tick();
+context.escapeStopped=false;
+run("$('orb').onkeydown({key:'Escape',preventDefault(){},stopPropagation(){escapeStopped=true}})");
+assert.equal(context.escapeStopped,true,'Escape cancels locally rather than bubbling to Back');
+assert.equal(run('state.recording'),false);
+run("move('home');"+down+";$('orb').onpointermove({clientX:100,clientY:0,pointerId:2});$('orb').onpointerup({clientX:100,clientY:0,pointerId:2,preventDefault(){}})");
+assert.equal(route(),'home','secondary touch cannot navigate or release the primary gesture');tick();
+assert.equal(run('state.recording'),true,'primary gesture remains active');
+run("$('orb').onlostpointercapture({pointerId:1})");assert.equal(run('state.recording'),false);
+run("move('home');"+down+";$('orb').onpointermove({clientX:9,clientY:0,pointerId:1})");tick();
+assert.equal(element('orb').style.transform,'','recording recenters after small pointer drift');
+run("$('orb').onpointercancel({pointerId:1})");
+console.log('PASS: lost capture before hold; focus loss before/during keyboard capture; Escape containment; secondary-pointer isolation; drift reset.');
