@@ -74,3 +74,37 @@ The owner explicitly instructed "تمام ادمج و اعتمد" after reviewin
 An added regression failed against main: losing pointer capture before the hold threshold could start recording later. Fixed pending/active pointer cancellation, keyboard focus-loss cancellation, Escape event containment, secondary pointer isolation and recording recentering. Both Node suites and `git diff --check` PASS. Chromium native held mouse and Space submission PASS; Space+Tab cancellation and Space+Escape local cancellation PASS. Rechecked 40 shell layout cases (five primary views × four widths × two themes): no horizontal overflow or primary-view buttons below 44×44px. This is desktop Chromium, not mobile touch qualification.
 
 [Qualification report and physical-device task script](REPORTS/INTERACTION-QUALIFICATION-2026-10-31.md). Next: review the isolated fixes; execute the script on Mate X6 folded/unfolded and Telegram, then scope the first implementation slice. No production backend/provider or unspecified governance adoption starts in this round.
+
+## 2026-11-01 interactive capture state prototype
+
+The [prototype guide](../docs/ux/prototype/README.md#capture-state-journeys--2026-11-01) documents two new synthetic journeys: reminder-time clarification and lost storage response (before/after the mock action), plus unsent/offline retry, same-operation reconciliation, source/clarification preservation and explicit-action reversal. Inbox reopens pending captures; Calendar/Ask expose only confirmed mock receipts. The time starts empty. Existing circle/navigation and old fixtures are preserved. The local JavaScript ledger is independent of the Python experiment in PRs #6/#7; no real integration is claimed.
+
+12 added Node behavior tests PASS; existing flow/design suites PASS; original reference integrity and palette contrast PASS; Chromium clarification/reconciliation checks and 56 phone-shell layout/target cases PASS; `git diff --check` PASS. Exact coverage/limits and reproduction steps are in the prototype guide. Physical mobile/Telegram, screen readers/200% text, actual provider/auth/storage/network/delivery remain NOT RUN. This design branch is based on PR #4's interruption fixes; PRs #5–#7 remain separate unmerged product/experiment dependencies. Production status remains NOT STARTED, central-governance adoption PENDING; no automatic merge.
+
+Next bounded task: review these recovery states on Huawei Mate X6 folded/unfolded and Telegram, then qualify first-user usability and accessibility before the authenticated durable text slice. Private design preview published successfully at https://madar-design-review-oct28.n923760.chatgpt.site from Site source commit `dc7fdf98785b8d28a7aede669ccc260ecb8a7f79`. This is separate from enabling any MADAR production service.
+
+## 2026-11-01 capture draft and navigation repair
+
+Follow-up within the PR #8 design branch fixes unsubmitted time loss and cross-capture Back/Forward context. Drafts are scoped to a capture in page memory; explicit confirmation alone appends the clarification. History binds route/capture/index, including same-route capture switches. Enter and associated help/error semantics improve keyboard interaction.
+
+16 capture tests PASS (12 existing + 4 regression cases), existing flow/design suites and original-reference/palette checks PASS; Chromium draft retention, second-capture isolation, native Back/Forward context and Enter confirmation PASS; `git diff --check` PASS. See the prototype guide for exact evidence. The earlier 56-case shell matrix remains a dated checkpoint, not a rerun. Physical Mate X6/Telegram/virtual keyboard, screen readers and 200% text remain NOT RUN. No production service, governance adoption or automatic merge. Next: execute the physical-device script, review accessibility and prepare the bounded durable-text implementation only after that review.
+
+Private preview republished successfully from Site source `df4ac89633798e77055e9a7fdc3b521ccb070bae` at https://madar-design-review-oct28.n923760.chatgpt.site. Owner-only audience preserved.
+
+## 2026-11-01 automated prototype validation
+
+Added a read-only GitHub Actions workflow for the three prototype Node suites, using Node 24 and commit-pinned official actions. It covers capture/recovery, circle/navigation and design/reference assertions without deployment, secrets or provider calls. Workflow YAML parsing and all three local commands PASS (16 capture tests plus existing flow/design checks); `git diff --check` PASS. Hosted CI status must be read from its run; it is not inferred from local PASS. Branch protection, real device/accessibility and production integration remain unchanged/unqualified. No automatic merge or central-governance adoption.
+
+Hosted execution subsequently verified PASS: https://github.com/n923760-rgb/madar/actions/runs/41334387631 — the capture, flow/navigation and design/reference steps all succeeded. This establishes the first hosted workflow result, not branch protection or device/provider qualification.
+
+## 2026-11-02 optional invoice association prototype
+
+Invoice review now offers source-only retention or explicit association with the existing washer, without inventing an asset/warranty/expiry/reminder or adding a tab. The synthetic action ledger provides committing/receipt/reconciliation/source/targeted reversal; confirmed association appears on the existing asset and invoices stay outside Calendar. Duplicate review cannot bypass into source-only execution. No arbitrary file extraction, expense accounting or durable ingestion is claimed.
+
+19 capture tests and existing flow/design/reference checks PASS locally; Chromium invoice source-only/association/reversal and 12 narrow-shell/theme cases PASS. Guide contains reproduction steps and limits. Real files/OCR/private storage, mobile/Telegram, screen readers and production services remain NOT RUN/not implemented. Work stays on PR #8 with no automatic merge or central-governance adoption. Next: review optional invoice association alongside the physical-device script and qualify accessibility before bounded production engineering.
+
+## 2026-11-02 cross-branch integration review
+
+[Integration review](REPORTS/INTEGRATION-REVIEW-2026-11-02.md) pins published heads and reruns both workstreams: PR #8's 19 capture tests plus flow/design checks PASS; PR #7's 38 Python tests, five-proposal demo and 46-output/17-rejection specification verifier PASS. A local read-only merge-tree probe found a roadmap conflict between the two chain tips. No remote merge or combined runtime qualification was performed. UI invoice behavior remains independent from the Python adapter, which defers invoices. Existing CI covers UI only; physical-device/accessibility, real identity/storage/provider/delivery and central-governance adoption remain unqualified.
+
+Next: review the pinned integration procedure, resolve the roadmap in an authorized isolated integration branch retaining both dated histories, then rerun combined checks and extend CI. No automatic merge, production service or preview change in this review.
