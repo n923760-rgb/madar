@@ -59,3 +59,10 @@ Home contains a quiet greeting, one attention row, the central circle, two captu
 ## States to retain
 
 Idle → simulated listening → captured → processing → targeted clarification when uncertain → saved with View/Undo. Also duplicate, failed, retry, offline, no-result and empty states. No actual AI, microphone, camera, persistence or notification capability is claimed. Reload resets all data.
+
+
+## 2026-11-04 accessibility refinement candidate
+
+The approved typography sizes now use rem units (1rem = 16px at the default browser setting) instead of fixed font-size pixels. Layout dimensions and icons remain in CSS pixels. No zoom lock is added. At a phone container narrower than 16em, the enlarged circle/shortcut area reflows into a circle followed by a two-column destination grid, avoiding overlapping absolute labels. This preserves the approved central control and physical direction mappings; the tap arrangement at large text remains a review candidate.
+
+Main content has an accessible name from its current h1. Destination changes focus this region. Same-route, same-capture updates retain focus on the matching control and preserve reading position; removed controls fall back to the region. Focus-visible uses the existing accent outline. Calendar and disclosure targets remain at least 44×44 CSS px in the recorded desktop shell matrix. Reference colors, fonts and reduced-motion rule remain unchanged. Physical mobile/assistive-technology validation is still required.
