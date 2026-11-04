@@ -153,3 +153,14 @@ PASS: 23 capture/state/focus Node tests (19 existing + 4 new), flow/design/refer
 Next: review the refinement and execute the physical-device/accessibility script; then review the authenticated durable text integration design. Production engineering remains NOT STARTED; central-governance adoption remains PENDING. PR merge and hosted CI must be verified independently; this round does not automatically merge new changes.
 
 Private preview publication succeeded on 2026-11-04 at https://madar-design-review-oct28.n923760.chatgpt.site, from Site source `25a3adbc2a4a102d733e3b2418ce9beda6dd6055`. Owner-only audience preserved. This publishes the synthetic design preview; it does not enable MADAR production services.
+
+
+## 2026-11-04 short and landscape follow-up in PR #9
+
+Extended the same refinement branch after the owner requested continuation. Main remains f6620a7; PR #9 is open as a review candidate. The [accessibility report](REPORTS/ACCESSIBILITY-REVIEW-2026-11-04.md#follow-up--short-landscape-and-unfolded-like-css-viewports) and [100-case measured matrix](REPORTS/RESPONSIVE-MATRIX-2026-11-04.json) record responsive sidebar/arc/Calendar repairs and returning the app to view on navigation.
+
+PASS: 24 capture/state/focus tests (one added scroll regression fails on the prior PR head); existing flow/design/reference checks; 100 desktop Chromium iframe cases covering five short/landscape/unfolded-like viewports, five primary routes, two themes and 100/200% root text. No document/main horizontal overflow, undersized visible controls, clipped phone bounds or footer escape in those measurements. Calendar has a contained horizontal fallback. Composer draft retained across a viewport-size change; input focus PASS. This is desktop viewport qualification, not physical mobile or a soft-keyboard test.
+
+Next: review PR #9 and execute the physical Mate X6 folded/unfolded, Telegram, soft-keyboard, screen-reader and first-user task script. Production engineering and central-governance statuses remain unchanged. No automatic merge in this continuation.
+
+Follow-up preview publication succeeded on 2026-11-04 from Site source `5ffaaab07dd7c0c986bc51fe72e819f59ae0752e` at https://madar-design-review-oct28.n923760.chatgpt.site. Owner-only audience retained; synthetic prototype only.
