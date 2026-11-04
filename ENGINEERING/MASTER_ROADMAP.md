@@ -1,14 +1,14 @@
 # MADAR Master Roadmap
 
-Checkpoint: 2026-10-31. Current phase: **Approved design baseline; production engineering not started**.
-Status: OWNER APPROVED the current prototype and project instructions on 2026-10-30 ("تمام ادمج و اعتمد"). Integration is tracked through stacked PR #3 → PR #2 → main; GitHub merge metadata is authoritative. The private static preview remains a simulation.
+Checkpoint: 2026-11-04. Current phase: **Approved design baseline; production engineering not started**.
+Status: OWNER APPROVED the current prototype and project instructions on 2026-10-30 ("تمام ادمج و اعتمد"). PRs #2–#8 are merged; the current accessibility refinement is isolated for review; GitHub merge metadata is authoritative. The private static preview remains a simulation.
 
 ## Verified source checkpoint
 
 Repository: https://github.com/n923760-rgb/madar — public.
-Official main verified on 2026-10-31 after approved PR #2/#3 integration: `8b3b5daef3a53f4578082c3531899c00c27c9c9b`.
+Official main verified on 2026-11-04 after PRs #4–#8 integration: `f6620a7e03173a5b3d166f002830276071b2b9e3`. Main CI run 41597470602 succeeded; no open PRs before this round.
 Original documentation import: `21ad88e0e2432307d455b8ad80c9254284d507d4` on `docs/product-design-foundation`.
-Organization was merged through PR #1 on 2026-10-14; design PR #3 merged into PR #2, then PR #2 merged into main on 2026-10-30. UX-014 records owner design approval. The new interruption qualification fixes are isolated on `design/interaction-qualification-v0.4`, pending PR review.
+Organization was merged through PR #1 on 2026-10-14; design PR #3 merged into PR #2, then PR #2 merged into main on 2026-10-30. UX-014 records owner design approval. Interruption/capture-state fixes and the v2.2 specification/local experiment are merged; `design/mobile-accessibility-v0.5` contains the new review candidate.
 
 ## Phase status
 
@@ -17,7 +17,7 @@ Organization was merged through PR #1 on 2026-10-14; design PR #3 merged into PR
 | Product specification | Product Master v2.1 imported unchanged | Preserve approved baseline; record amendments |
 | UX architecture | UX v1 imported unchanged; conflicts recorded | Resolve open details and document decision attribution |
 | First ten screen brief | Interactive source retained; five primary views approved | Device qualification |
-| Wireframes/prototype | Approved baseline; interruption fixes and 40 layout cases rechecked 2026-10-31 | Review new PR and physical device QA |
+| Wireframes/prototype | Approved baseline; new text/focus candidate passes 80 desktop shell cases | Review candidate and physical device QA |
 | UI approval | Current prototype baseline APPROVED by owner, 2026-10-30 | Runtime/device qualification remains separate |
 | Usability/accessibility | Token contrast, browser targets/layout PASS | User study, real devices, screen readers NOT RUN |
 | AI evaluation set | v2.2 synthetic contract set prepared: 46 expected-output cases and 17 invalid-proposal checks | Real provider/extraction evaluation NOT RUN |
@@ -142,3 +142,14 @@ Combined-tree qualification PASS: 19 Node capture behavior tests; prototype flow
 The JavaScript receipt ledger and Python adapter remain independent synthetic experiments. Real classification, audio/OCR, authenticated identity, durable storage, files and reminder delivery are NOT implemented. Physical mobile/Telegram, screen readers and 200% text remain NOT RUN. Production engineering remains NOT STARTED; central-governance adoption remains PENDING.
 
 Next: qualify the approved five-view prototype on physical mobile/Telegram and assistive technology, then review the authenticated durable text integration design before implementing production behavior. This integration accepts the reviewed design/specification/experiment baseline; it does not qualify provider accuracy or live storage/delivery. GitHub PR metadata is authoritative for final merge status.
+
+
+## 2026-11-04 text scaling and keyboard refinement
+
+[Accessibility review](REPORTS/ACCESSIBILITY-REVIEW-2026-11-04.md) records rem typography, narrow large-text circle/shortcut reflow, Calendar/disclosure target repairs and same-context focus/scroll retention with named destination focus. This is a refinement candidate on design/mobile-accessibility-v0.5, not a replacement product specification or a newly approved visual baseline.
+
+PASS: 23 capture/state/focus Node tests (19 existing + 4 new), flow/design/reference checks and git diff --check. The added calendar focus regression fails on the original main. Chromium phone-shell matrix PASS: five primary views × four widths × 100/200% root text × two themes = 80 cases; no horizontal screen/phone overflow or visible controls below 44×44px. Native day/filter keyboard and destination-focus checks PASS. These are desktop/browser checks. Physical Mate X6 folded/unfolded, Telegram, soft keyboard/safe areas, OS text size, browser zoom, screen readers and first-user testing remain NOT RUN.
+
+Next: review the refinement and execute the physical-device/accessibility script; then review the authenticated durable text integration design. Production engineering remains NOT STARTED; central-governance adoption remains PENDING. PR merge and hosted CI must be verified independently; this round does not automatically merge new changes.
+
+Private preview publication succeeded on 2026-11-04 at https://madar-design-review-oct28.n923760.chatgpt.site, from Site source `25a3adbc2a4a102d733e3b2418ce9beda6dd6055`. Owner-only audience preserved. This publishes the synthetic design preview; it does not enable MADAR production services.
