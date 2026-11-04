@@ -36,3 +36,16 @@ Physical Huawei Mate X6 folded/unfolded, Telegram WebView, soft keyboard/safe-ar
 Use the existing physical-device task script plus this sequence: increase system text size; open all five views in dark/light; open month view; traverse days and filters with a connected keyboard or screen reader; open the internal composer with the soft keyboard; hold/release the circle, cancel an active hold and use explicit recording buttons. On Mate X6, repeat folded, unfolded and landscape. Record actual observations before changing NOT RUN statuses.
 
 Private preview publication succeeded on 2026-11-04 at https://madar-design-review-oct28.n923760.chatgpt.site, from Site source `25a3adbc2a4a102d733e3b2418ce9beda6dd6055`. Owner-only audience preserved. This publishes the synthetic design preview; it does not enable MADAR production services.
+
+
+## Follow-up — short, landscape and unfolded-like CSS viewports
+
+Previous PR #9 head: f5dc7352f291742dbaa28271fe55bed3fbd1dc48. Main remains f6620a7. No merge is authorized by this continuation. Baseline iframe testing exposed horizontal Home overflow at 320px and near 768px, plus Calendar targets below 44px when the review sidebar or classic scrollbar reduced the available width.
+
+Move the review sidebar below the app through 900px, cap the rotated decorative Home arc, keep Calendar columns >=44px with a contained horizontal fallback, and return the app to view on destination or review-panel selection. Inline filtering does not scroll the outer document. The new scroll regression fails against the prior PR head (23 PASS / 1 FAIL) and passes with the repair (24 PASS).
+
+Final browser evidence is in [RESPONSIVE-MATRIX-2026-11-04.json](RESPONSIVE-MATRIX-2026-11-04.json): 100 cases, five iframe CSS viewports × five primary routes × two root text scales × two themes. Every case passed document/screen horizontal overflow, phone-in-viewport bounds, footer containment and visible control minimum dimensions. Calendar-local horizontal scrolling is intentional where seven 44px cells do not fit. Minimum main-region height was 101px; longer content uses vertical scrolling. These checks do not prove usability of every off-screen control or mobile browser behavior.
+
+A synthetic text draft remained unchanged through a native iframe-size control change from 844×390 to 740×360; its composer input remained focusable within the phone. The reusable `docs/ux/prototype/checks/viewport.html` harness changes iframe dimensions only. It does not emulate Telegram, pointer coarseness, OS font settings, physical folding, safe areas or a soft keyboard. Those tests and screen readers remain NOT RUN. Existing flow/design/reference checks and whitespace checks PASS. Hosted CI must be verified against the published head separately.
+
+Follow-up preview publication succeeded on 2026-11-04 from Site source `5ffaaab07dd7c0c986bc51fe72e819f59ae0752e` at https://madar-design-review-oct28.n923760.chatgpt.site. Owner-only audience retained; synthetic prototype only.
